@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yetion | Nepal Trekking & Adventure Travel</title>
+  <meta name="description" content="Nepal's premier trekking and adventure travel company. Experience the Himalayas with expert guides, guaranteed departures, and an unmatched 98% success rate." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1e3a5f;
+      --navy-light: #2d5a8e;
+      --navy-dark: #0f2440;
+      --gold: #d4a853;
+      --gold-light: #e8c77b;
+      --gold-dark: #b8922e;
+      --earth: #8b7355;
+      --summit: #f5f0e8;
+      --glacier: #e8f0f8;
+      --white: #ffffff;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --radius: 1rem;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: #1a202c; background: #fff; line-height: 1.6; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── HEADER ── */
+    .header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      transition: all .3s ease;
+    }
+    .header.scrolled {
+      background: rgba(255,255,255,.96);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 12px rgba(0,0,0,.08);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      max-width: 1280px; margin: 0 auto; padding: 0 1.5rem;
+      display: flex; align-items: center; justify-content: space-between; height: 80px;
+    }
+    .logo { display: flex; align-items: center; gap: .5rem; }
+    .logo-icon { width: 36px; height: 36px; }
+    .logo-text { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: #fff; }
+    .header.scrolled .logo-text { color: var(--navy); }
+    .nav { display: flex; align-items: center; gap: .25rem; }
+    .nav a {
+      padding: .5rem 1rem; border-radius: .5rem; font-size: .875rem; font-weight: 500;
+      color: rgba(255,255,255,.9); transition: all .2s;
+    }
+    .nav a:hover { background: rgba(255,255,255,.1); }
+    .header.scrolled .nav a { color: var(--navy-dark); }
+    .header.scrolled .nav a:hover { background: var(--summit); }
+    .btn-book {
+      background: var(--gold); color: var(--navy-dark); font-weight: 600;
+      padding: .5rem 1.25rem; border-radius: .5rem; font-size: .875rem;
+      transition: all .2s; border: none; cursor: pointer;
+    }
+    .btn-book:hover { background: var(--gold-dark); }
+    .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: .5rem; }
+    .mobile-menu-btn span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; transition: all .3s; border-radius: 2px; }
+    .header.scrolled .mobile-menu-btn span { background: var(--navy-dark); }
+    .mobile-nav {
+      display: none; position: fixed; top: 80px; left: 0; right: 0;
+      background: #fff; box-shadow: 0 8px 24px rgba(0,0,0,.1); padding: 1rem 1.5rem 1.5rem; z-index: 99;
+    }
+    .mobile-nav.open { display: block; }
+    .mobile-nav a { display: block; padding: .75rem 1rem; color: var(--navy-dark); font-weight: 500; border-radius: .5rem; }
+    .mobile-nav a:hover { background: var(--summit); }
+    .mobile-nav .btn-book { display: block; text-align: center; margin-top: 1rem; padding: .75rem; width: 100%; border-radius: .5rem; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=1920&q=80') center/cover no-repeat;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,.6), rgba(0,0,0,.4) 50%, rgba(0,0,0,.7));
+    }
+    .hero-content {
+      position: relative; z-index: 2; text-align: center; color: #fff;
+      max-width: 860px; padding: 2rem 1.5rem;
+      animation: fadeUp .8s ease both;
+    }
+    .hero-badge {
+      display: inline-block; border: 1px solid rgba(212,168,83,.4);
+      background: rgba(212,168,83,.1); backdrop-filter: blur(4px);
+      padding: .375rem 1rem; border-radius: 999px; font-size: .875rem; font-weight: 500;
+      color: var(--gold-light); margin-bottom: 1.5rem;
+      animation: fadeUp .8s .2s ease both;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700; line-height: 1.1; letter-spacing: -.02em;
+      animation: fadeUp .8s .4s ease both;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero p {
+      margin: 1.5rem auto 0; max-width: 600px; font-size: 1.1rem;
+      color: rgba(255,255,255,.82); animation: fadeUp .8s .6s ease both;
+    }
+    .hero-btns {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+      margin-top: 2.5rem; animation: fadeUp .8s .8s ease both;
+    }
+    .btn-primary {
+      background: var(--gold); color: var(--navy-dark); font-weight: 600;
+      padding: .8rem 2rem; border-radius: .5rem; font-size: 1rem; transition: all .2s;
+      border: none; cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--gold-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212,168,83,.4); }
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,.3); background: rgba(255,255,255,.05);
+      color: #fff; font-weight: 600; padding: .8rem 2rem; border-radius: .5rem;
+      font-size: 1rem; backdrop-filter: blur(4px); transition: all .2s; cursor: pointer;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,.12); }
+    .scroll-down {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      z-index: 2; animation: bounce 2s infinite;
+    }
+    .scroll-down svg { color: rgba(255,255,255,.6); }
+
+    /* ── STATS ── */
+    .stats { background: var(--navy); padding: 4rem 1.5rem; }
+    .stats-grid {
+      max-width: 1280px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;
+    }
+    @media (min-width: 768px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
+    .stat-item { display: flex; flex-direction: column; align-items: center; gap: .75rem; padding: 1.5rem; text-align: center; }
+    .stat-icon { color: var(--gold); }
+    .stat-icon svg { width: 40px; height: 40px; }
+    .stat-value { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: #fff; line-height: 1; }
+    .stat-label { font-size: .8rem; font-weight: 500; text-transform: uppercase; letter-spacing: .08em; color: rgba(255,255,255,.65); }
+
+    /* ── SECTIONS COMMON ── */
+    .section { padding: 5rem 1.5rem; }
+    .section-inner { max-width: 1280px; margin: 0 auto; }
+    .section-heading { text-align: center; margin-bottom: 3rem; }
+    .section-heading h2 {
+      font-family: 'Playfair Display', serif; font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 700; color: var(--navy-dark); line-height: 1.2;
+    }
+    .section-heading p { margin-top: .75rem; color: var(--muted); font-size: 1rem; }
+    .section-heading.light h2 { color: #fff; }
+    .section-heading.light p { color: rgba(255,255,255,.7); }
+
+    /* ── TREKS GRID ── */
+    .treks-section { background: var(--summit); }
+    .treks-grid { display: grid; gap: 2rem; }
+    @media (min-width: 640px) { .treks-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .treks-grid { grid-template-columns: repeat(3, 1fr); } }
+    .trek-card {
+      background: #fff; border-radius: var(--radius); overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,.06); transition: all .3s; display: flex; flex-direction: column;
+    }
+    .trek-card:hover { box-shadow: 0 12px 36px rgba(0,0,0,.12); transform: translateY(-4px); }
+    .trek-img { position: relative; aspect-ratio: 4/3; overflow: hidden; }
+    .trek-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+    .trek-card:hover .trek-img img { transform: scale(1.08); }
+    .trek-img-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.4), transparent); }
+    .trek-tags { position: absolute; top: .75rem; left: .75rem; display: flex; gap: .5rem; flex-wrap: wrap; }
+    .badge {
+      padding: .25rem .6rem; border-radius: 999px; font-size: .7rem; font-weight: 600;
+      background: var(--gold); color: var(--navy-dark); border: none;
+    }
+    .badge-difficulty {
+      background: rgba(255,255,255,.15); backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,.3); color: #fff;
+    }
+    .badge-challenging { background: rgba(239,68,68,.15); border-color: rgba(239,68,68,.3); color: #fca5a5; }
+    .badge-moderate { background: rgba(234,179,8,.15); border-color: rgba(234,179,8,.3); color: #fde047; }
+    .badge-easy { background: rgba(34,197,94,.15); border-color: rgba(34,197,94,.3); color: #86efac; }
+    .trek-price { position: absolute; bottom: .75rem; right: .75rem; text-align: right; }
+    .trek-price-original { font-size: .75rem; color: rgba(255,255,255,.65); text-decoration: line-through; }
+    .trek-price-main { font-size: 1.25rem; font-weight: 700; color: #fff; }
+    .trek-price-per { font-size: .75rem; color: rgba(255,255,255,.75); }
+    .trek-diff { position: absolute; top: .75rem; right: .75rem; }
+    .trek-body { padding: 1.25rem; flex: 1; }
+    .trek-body h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--navy-dark); }
+    .trek-body p { font-size: .875rem; color: var(--muted); margin-top: .25rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .trek-meta { display: flex; align-items: center; gap: 1rem; margin-top: 1rem; font-size: .8rem; color: var(--muted); flex-wrap: wrap; }
+    .trek-meta span { display: flex; align-items: center; gap: .25rem; }
+    .trek-meta svg { color: var(--gold); flex-shrink: 0; }
+    .view-all { text-align: center; margin-top: 3rem; }
+    .btn-navy {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--navy); color: #fff; font-weight: 600;
+      padding: .75rem 2rem; border-radius: 999px; font-size: .875rem; transition: all .2s;
+    }
+    .btn-navy:hover { background: var(--navy-dark); transform: translateY(-2px); }
+
+    /* ── DESTINATIONS ── */
+    .destinations-grid { display: grid; gap: 1.5rem; }
+    @media (min-width: 768px) { .destinations-grid { grid-template-columns: repeat(3, 1fr); } }
+    .dest-card { position: relative; border-radius: var(--radius); overflow: hidden; display: block; }
+    .dest-card img { width: 100%; aspect-ratio: 3/4; object-fit: cover; transition: transform .6s; }
+    .dest-card:hover img { transform: scale(1.08); }
+    .dest-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.8) 0%, rgba(0,0,0,.2) 50%, transparent 100%); }
+    .dest-body { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem; }
+    .dest-body .trips { font-size: .8rem; font-weight: 500; color: var(--gold-light); }
+    .dest-body h3 { font-family: 'Playfair Display', serif; font-size: 1.75rem; font-weight: 700; color: #fff; margin-top: .25rem; }
+    .dest-body p { font-size: .875rem; color: rgba(255,255,255,.7); margin-top: .5rem; }
+    .dest-body .explore { display: inline-flex; align-items: center; gap: .25rem; margin-top: 1rem; font-size: .875rem; font-weight: 600; color: var(--gold-light); transition: gap .2s; }
+    .dest-card:hover .explore { gap: .5rem; }
+
+    /* ── WHY CHOOSE US ── */
+    .why-section { background: var(--glacier); }
+    .why-grid { display: grid; gap: 2rem; }
+    @media (min-width: 640px) { .why-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .why-grid { grid-template-columns: repeat(3, 1fr); } }
+    .why-card {
+      background: #fff; border-radius: var(--radius); padding: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,.05); transition: all .3s;
+    }
+    .why-card:hover { box-shadow: 0 12px 32px rgba(0,0,0,.1); transform: translateY(-4px); }
+    .why-icon {
+      width: 56px; height: 56px; border-radius: .75rem; background: rgba(30,58,95,.05);
+      display: flex; align-items: center; justify-content: center;
+      transition: background .3s;
+    }
+    .why-card:hover .why-icon { background: rgba(212,168,83,.1); }
+    .why-icon svg { color: var(--navy); transition: color .3s; }
+    .why-card:hover .why-icon svg { color: var(--gold); }
+    .why-card h3 { font-size: 1.1rem; font-weight: 600; color: var(--navy-dark); margin-top: 1.25rem; }
+    .why-card p { font-size: .875rem; color: var(--muted); margin-top: .5rem; line-height: 1.7; }
+
+    /* ── ACTIVITIES ── */
+    .activities-grid { display: grid; gap: 1.5rem; }
+    @media (min-width: 640px) { .activities-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .activities-grid { grid-template-columns: repeat(3, 1fr); } }
+    .activity-card { position: relative; border-radius: var(--radius); overflow: hidden; display: block; }
+    .activity-card img { width: 100%; aspect-ratio: 16/10; object-fit: cover; transition: transform .5s; }
+    .activity-card:hover img { transform: scale(1.08); }
+    .activity-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,36,64,.9) 0%, rgba(15,36,64,.4) 60%, transparent 100%); }
+    .activity-body { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem; display: flex; align-items: center; gap: .75rem; }
+    .activity-icon-wrap { width: 44px; height: 44px; border-radius: .5rem; background: rgba(212,168,83,.2); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .activity-icon-wrap svg { color: var(--gold); }
+    .activity-body h3 { font-size: 1.1rem; font-weight: 600; color: #fff; }
+    .activity-body p { font-size: .8rem; color: rgba(255,255,255,.6); margin-top: .15rem; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-section { background: var(--navy-dark); }
+    .testimonial-card {
+      position: relative; border-radius: var(--radius);
+      background: rgba(255,255,255,.05); backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,.1); padding: 3rem;
+      max-width: 760px; margin: 0 auto;
+    }
+    .quote-icon { position: absolute; top: 1.5rem; left: 1.5rem; opacity: .15; color: var(--gold); }
+    .stars { display: flex; gap: .25rem; }
+    .star { width: 20px; height: 20px; fill: var(--gold); color: var(--gold); }
+    .star.empty { fill: none; color: rgba(255,255,255,.2); }
+    .testimonial-quote { margin-top: 1.5rem; font-size: 1.1rem; line-height: 1.8; color: rgba(255,255,255,.9); }
+    .testimonial-author { margin-top: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: gap; gap: 1rem; }
+    .testimonial-author strong { color: #fff; font-weight: 600; }
+    .testimonial-author .meta { font-size: .875rem; color: rgba(255,255,255,.55); margin-top: .15rem; }
+    .testimonial-source { background: rgba(255,255,255,.1); padding: .25rem .75rem; border-radius: 999px; font-size: .75rem; color: rgba(255,255,255,.55); }
+    .testimonial-nav { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 2rem; }
+    .nav-btn {
+      width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,.1);
+      border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      color: #fff; transition: all .2s;
+    }
+    .nav-btn:hover { background: var(--gold); color: var(--navy-dark); }
+    .dots { display: flex; gap: .5rem; align-items: center; }
+    .dot { width: 8px; height: 8px; border-radius: 999px; background: rgba(255,255,255,.3); border: none; cursor: pointer; transition: all .2s; }
+    .dot.active { width: 32px; background: var(--gold); }
+
+    /* ── CTA BANNER ── */
+    .cta-section { position: relative; padding: 5rem 1.5rem; }
+    .cta-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1516302752625-fcc3c50ae61f?w=1920&q=80') center/cover fixed; }
+    .cta-overlay { position: absolute; inset: 0; background: rgba(30,58,95,.85); }
+    .cta-inner { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; text-align: center; }
+    .cta-inner h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.75rem, 3.5vw, 3rem); font-weight: 700; color: #fff; line-height: 1.2; }
+    .cta-inner p { margin: 1rem auto 0; max-width: 560px; color: rgba(255,255,255,.8); font-size: 1rem; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+    .btn-outline-white { border: 1px solid rgba(255,255,255,.3); color: #fff; font-weight: 600; padding: .75rem 2rem; border-radius: .5rem; font-size: 1rem; transition: all .2s; background: transparent; cursor: pointer; }
+    .btn-outline-white:hover { background: rgba(255,255,255,.1); }
+
+    /* ── FAQ ── */
+    .faq-inner { max-width: 760px; margin: 0 auto; }
+    .faq-item { border: 1px solid var(--border); border-radius: var(--radius); background: #fff; box-shadow: 0 1px 6px rgba(0,0,0,.04); margin-bottom: .75rem; overflow: hidden; }
+    .faq-q {
+      width: 100%; text-align: left; padding: 1.25rem 1.5rem; font-size: .95rem; font-weight: 500;
+      color: var(--navy-dark); background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .faq-q:hover { color: var(--navy); }
+    .faq-chevron { flex-shrink: 0; transition: transform .25s; }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+    .faq-item.open .faq-a { max-height: 400px; }
+    .faq-a-inner { padding: 0 1.5rem 1.25rem; font-size: .9rem; color: var(--muted); line-height: 1.7; }
+
+    /* ── NEWSLETTER ── */
+    .newsletter-section { background: var(--summit); }
+    .newsletter-inner { max-width: 640px; margin: 0 auto; text-align: center; }
+    .newsletter-inner h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 700; color: var(--navy-dark); }
+    .newsletter-inner p { color: var(--muted); margin-top: .75rem; }
+    .newsletter-form { display: flex; gap: .75rem; margin-top: 1.5rem; max-width: 460px; margin-left: auto; margin-right: auto; flex-wrap: wrap; }
+    .newsletter-form input {
+      flex: 1; min-width: 200px; height: 48px; padding: 0 1rem; border: 1px solid var(--border);
+      border-radius: .5rem; font-size: .875rem; outline: none; transition: border-color .2s;
+      background: #fff;
+    }
+    .newsletter-form input:focus { border-color: var(--navy); }
+    .newsletter-form button { height: 48px; padding: 0 1.5rem; background: var(--gold); color: var(--navy-dark); font-weight: 600; border: none; border-radius: .5rem; cursor: pointer; transition: background .2s; white-space: nowrap; }
+    .newsletter-form button:hover { background: var(--gold-dark); }
+    .newsletter-success { background: #f0fdf4; border-radius: var(--radius); padding: 1.5rem; margin-top: 1.5rem; color: #166534; }
+
+    /* ── FOOTER ── */
+    .footer { background: var(--navy-dark); color: #fff; padding: 4rem 1.5rem 2rem; }
+    .footer-inner { max-width: 1280px; margin: 0 auto; }
+    .footer-grid { display: grid; gap: 3rem; }
+    @media (min-width: 640px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .footer-grid { grid-template-columns: 1.5fr 1fr 1fr 1fr; } }
+    .footer-brand .logo-text { color: #fff; }
+    .footer-brand p { font-size: .875rem; color: rgba(255,255,255,.65); line-height: 1.7; margin-top: 1rem; }
+    .social-links { display: flex; gap: .75rem; margin-top: 1.5rem; }
+    .social-link {
+      width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,.1);
+      display: flex; align-items: center; justify-content: center; transition: all .2s;
+    }
+    .social-link:hover { background: var(--gold); color: var(--navy-dark); }
+    .social-link svg { width: 16px; height: 16px; }
+    .footer-col h3 { font-size: .8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--gold); margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+    .footer-col a { font-size: .875rem; color: rgba(255,255,255,.65); transition: color .2s; }
+    .footer-col a:hover { color: var(--gold-light); }
+    .footer-contact { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.1); }
+    .footer-contact a { display: flex; align-items: center; gap: .5rem; font-size: .875rem; color: rgba(255,255,255,.6); transition: color .2s; }
+    .footer-contact a:hover { color: var(--gold-light); }
+    .footer-contact span { display: flex; align-items: center; gap: .5rem; font-size: .875rem; color: rgba(255,255,255,.6); }
+    .footer-bottom { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.1); text-align: center; font-size: .8rem; color: rgba(255,255,255,.45); }
+
+    /* ── WHATSAPP BTN ── */
+    .whatsapp-btn {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 99;
+      width: 56px; height: 56px; border-radius: 50%; background: #25d366;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(37,211,102,.4); transition: all .2s;
+    }
+    .whatsapp-btn:hover { transform: scale(1.1); }
+    .back-to-top {
+      position: fixed; bottom: 5.5rem; right: 1.5rem; z-index: 99;
+      width: 44px; height: 44px; border-radius: 50%; background: var(--navy);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,.2); transition: all .2s;
+      opacity: 0; pointer-events: none;
+    }
+    .back-to-top.visible { opacity: 1; pointer-events: all; }
+    .back-to-top:hover { background: var(--navy-dark); transform: translateY(-2px); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes bounce { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 8px); } }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 767px) {
+      .nav, .header-cta { display: none; }
+      .mobile-menu-btn { display: block; }
+    }
+    @media (min-width: 768px) { .mobile-menu-btn { display: none; } }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <svg class="logo-icon" viewBox="0 0 36 36" fill="none">
+        <path d="M4 28L18 8l14 20H4z" fill="#d4a853" opacity=".9"/>
+        <path d="M10 28L18 14l8 14H10z" fill="#1e3a5f"/>
+      </svg>
+      <span class="logo-text">Yetion</span>
+    </a>
+    <nav class="nav">
+      <a href="#treks">Treks</a>
+      <a href="#destinations">Destinations</a>
+      <a href="#about">About</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="header-cta">
+      <a href="#contact" class="btn-book">Book Now</a>
+    </div>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="mobile-nav" id="mobileNav">
+  <a href="#treks">Treks</a>
+  <a href="#destinations">Destinations</a>
+  <a href="#about">About</a>
+  <a href="#blog">Blog</a>
+  <a href="#contact">Contact</a>
+  <a href="#contact" class="btn-book">Book Now</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Nepal's Premier Adventure Travel Company</div>
+    <h1>Your Himalayan<br /><span>Adventure</span> Awaits</h1>
+    <p>Trek to Everest Base Camp, explore ancient monasteries in Bhutan, or journey across the Tibetan plateau. Expert guides. Guaranteed departures. 98% success rate.</p>
+    <div class="hero-btns">
+      <a href="#treks" class="btn-primary">Explore Treks</a>
+      <a href="#about" class="btn-outline">
+        <svg style="display:inline;vertical-align:middle;margin-right:.4rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        Our Story
+      </a>
+    </div>
+  </div>
+  <div class="scroll-down">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+      </div>
+      <span class="stat-value" data-target="3250" data-suffix="+">0+</span>
+      <span class="stat-label">TripAdvisor Reviews</span>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+      </div>
+      <span class="stat-value" data-target="98" data-suffix="%">0%</span>
+      <span class="stat-label">Success Rate</span>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </div>
+      <span class="stat-value" data-target="18" data-suffix="+">0+</span>
+      <span class="stat-label">Years Experience</span>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+      </div>
+      <span class="stat-value" data-target="500" data-suffix="+">0+</span>
+      <span class="stat-label">Expeditions Completed</span>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED TREKS -->
+<section class="section treks-section" id="treks">
+  <div class="section-inner">
+    <div class="section-heading reveal">
+      <h2>Featured Treks</h2>
+      <p>Handpicked adventures for unforgettable Himalayan experiences</p>
+    </div>
+    <div class="treks-grid">
+
+      <!-- EBC -->
+      <a href="#treks" class="trek-card reveal">
+        <div class="trek-img">
+          <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80" alt="Everest Base Camp Trek" loading="lazy" />
+          <div class="trek-img-overlay"></div>
+          <div class="trek-tags"><span class="badge">Bestseller</span></div>
+          <div class="trek-diff"><span class="badge badge-challenging">Challenging</span></div>
+          <div class="trek-price">
+            <span class="trek-price-original">$1,850</span>
+            <div><span class="trek-price-main">$1,550</span><span class="trek-price-per"> /person</span></div>
+          </div>
+        </div>
+        <div class="trek-body">
+          <h3>Everest Base Camp Trek</h3>
+          <p>Walk in the footsteps of legends to the base of the world's highest peak</p>
+          <div class="trek-meta">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              14 days
+            </span>
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>
+              5,364m
+            </span>
+            <span style="margin-left:auto">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#d4a853" stroke="#d4a853" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              4.9 <span style="font-size:.7rem">(247)</span>
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <!-- ABC -->
+      <a href="#treks" class="trek-card reveal" style="animation-delay:.1s">
+        <div class="trek-img">
+          <img src="https://images.unsplash.com/photo-1585409677983-0f6c41ca9c3b?w=800&q=80" alt="Annapurna Base Camp Trek" loading="lazy" />
+          <div class="trek-img-overlay"></div>
+          <div class="trek-tags"><span class="badge">Popular</span></div>
+          <div class="trek-diff"><span class="badge badge-moderate">Moderate</span></div>
+          <div class="trek-price">
+            <span class="trek-price-original">$1,200</span>
+            <div><span class="trek-price-main">$980</span><span class="trek-price-per"> /person</span></div>
+          </div>
+        </div>
+        <div class="trek-body">
+          <h3>Annapurna Base Camp Trek</h3>
+          <p>Journey to the heart of the Annapurna sanctuary surrounded by 7,000m peaks</p>
+          <div class="trek-meta">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              11 days
+            </span>
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>
+              4,130m
+            </span>
+            <span style="margin-left:auto">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#d4a853" stroke="#d4a853" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              4.9 <span style="font-size:.7rem">(183)</span>
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Poon Hill -->
+      <a href="#treks" class="trek-card reveal" style="animation-delay:.2s">
+        <div class="trek-img">
+          <img src="https://images.unsplash.com/photo-1558799401-1dcba79834c2?w=800&q=80" alt="Poon Hill Trek" loading="lazy" />
+          <div class="trek-img-overlay"></div>
+          <div class="trek-tags"><span class="badge">Beginner</span></div>
+          <div class="trek-diff"><span class="badge badge-easy">Easy</span></div>
+          <div class="trek-price">
+            <div><span class="trek-price-main">$450</span><span class="trek-price-per"> /person</span></div>
+          </div>
+        </div>
+        <div class="trek-body">
+          <h3>Poon Hill Trek</h3>
+          <p>Iconic sunrise views over the Annapurna and Dhaulagiri ranges</p>
+          <div class="trek-meta">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              5 days
+            </span>
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>
+              3,210m
+            </span>
+            <span style="margin-left:auto">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#d4a853" stroke="#d4a853" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              4.8 <span style="font-size:.7rem">(312)</span>
+            </span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+    <div class="view-all reveal">
+      <a href="#treks" class="btn-navy">View All Treks →</a>
+    </div>
+  </div>
+</section>
+
+<!-- DESTINATIONS -->
+<section class="section" id="destinations">
+  <div class="section-inner">
+    <div class="section-heading reveal">
+      <h2>Explore Destinations</h2>
+      <p>Three incredible countries. Endless adventures.</p>
+    </div>
+    <div class="destinations-grid">
+
+      <a href="#destinations" class="dest-card reveal">
+        <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80" alt="Nepal" loading="lazy" />
+        <div class="dest-overlay"></div>
+        <div class="dest-body">
+          <div class="trips">34 Trips Available</div>
+          <h3>Nepal</h3>
+          <p>The Roof of the World Awaits</p>
+          <span class="explore">Explore →</span>
+        </div>
+      </a>
+
+      <a href="#destinations" class="dest-card reveal" style="animation-delay:.15s">
+        <img src="https://images.unsplash.com/photo-1587922546307-776227941871?w=800&q=80" alt="Bhutan" loading="lazy" />
+        <div class="dest-overlay"></div>
+        <div class="dest-body">
+          <div class="trips">8 Trips Available</div>
+          <h3>Bhutan</h3>
+          <p>The Last Shangri-La</p>
+          <span class="explore">Explore →</span>
+        </div>
+      </a>
+
+      <a href="#destinations" class="dest-card reveal" style="animation-delay:.3s">
+        <img src="https://images.unsplash.com/photo-1614607242094-b1b2cf769ff3?w=800&q=80" alt="Tibet" loading="lazy" />
+        <div class="dest-overlay"></div>
+        <div class="dest-body">
+          <div class="trips">6 Trips Available</div>
+          <h3>Tibet</h3>
+          <p>The Roof of the World</p>
+          <span class="explore">Explore →</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="section why-section" id="about">
+  <div class="section-inner">
+    <div class="section-heading reveal">
+      <h2>Why Trek With Us</h2>
+      <p>Trusted by 3,250+ adventurers from around the world</p>
+    </div>
+    <div class="why-grid">
+
+      <div class="why-card reveal">
+        <div class="why-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Safety First</h3>
+        <p>Health-trained guides, acclimatization protocols, and emergency evacuation plans on every trek.</p>
+      </div>
+
+      <div class="why-card reveal" style="animation-delay:.1s">
+        <div class="why-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Expert Local Guides</h3>
+        <p>Our experienced Nepali guides bring deep cultural knowledge and mountain expertise to every journey.</p>
+      </div>
+
+      <div class="why-card reveal" style="animation-delay:.2s">
+        <div class="why-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+        </div>
+        <h3>98% Success Rate</h3>
+        <p>Industry-leading success rate backed by 18+ years of experience and meticulous planning.</p>
+      </div>
+
+      <div class="why-card reveal" style="animation-delay:.1s">
+        <div class="why-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3>Sustainable Tourism</h3>
+        <p>Travelife certified. We give back to local communities and protect the environments we explore.</p>
+      </div>
+
+      <div class="why-card reveal" style="animation-delay:.2s">
+        <div class="why-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3>Guaranteed Departures</h3>
+        <p>Your trek departs as scheduled regardless of group size. No cancellations, ever.</p>
+      </div>
+
+      <div class="why-card reveal" style="animation-delay:.3s">
+        <div class="why-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+        </div>
+        <h3>24/7 Support</h3>
+        <p>From your first inquiry to your safe return home, our team is available around the clock.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-heading reveal">
+      <h2>Adventure Activities</h2>
+      <p>From gentle day hikes to challenging peak expeditions</p>
+    </div>
+    <div class="activities-grid">
+
+      <a href="#treks" class="activity-card reveal">
+        <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80" alt="Trekking" loading="lazy" />
+        <div class="activity-overlay"></div>
+        <div class="activity-body">
+          <div class="activity-icon-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>
+          </div>
+          <div><h3>Trekking</h3><p>26 trips available</p></div>
+        </div>
+      </a>
+
+      <a href="#treks" class="activity-card reveal" style="animation-delay:.1s">
+        <img src="https://images.unsplash.com/photo-1516302752625-fcc3c50ae61f?w=800&q=80" alt="Peak Climbing" loading="lazy" />
+        <div class="activity-overlay"></div>
+        <div class="activity-body">
+          <div class="activity-icon-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+          </div>
+          <div><h3>Peak Climbing</h3><p>6 trips available</p></div>
+        </div>
+      </a>
+
+      <a href="#treks" class="activity-card reveal" style="animation-delay:.2s">
+        <img src="https://images.unsplash.com/photo-1558799401-1dcba79834c2?w=800&q=80" alt="Cultural Tours" loading="lazy" />
+        <div class="activity-overlay"></div>
+        <div class="activity-body">
+          <div class="activity-icon-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><path d="M12 3L4 9v12h16V9L12 3z"/></svg>
+          </div>
+          <div><h3>Cultural Tours</h3><p>8 trips available</p></div>
+        </div>
+      </a>
+
+      <a href="#treks" class="activity-card reveal">
+        <img src="https://images.unsplash.com/photo-1585409677983-0f6c41ca9c3b?w=800&q=80" alt="Luxury Treks" loading="lazy" />
+        <div class="activity-overlay"></div>
+        <div class="activity-body">
+          <div class="activity-icon-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#d4a853" stroke="#d4a853" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div><h3>Luxury Treks</h3><p>4 trips available</p></div>
+        </div>
+      </a>
+
+      <a href="#treks" class="activity-card reveal" style="animation-delay:.1s">
+        <img src="https://images.unsplash.com/photo-1571401835393-8c5f35328320?w=800&q=80" alt="Cycling" loading="lazy" />
+        <div class="activity-overlay"></div>
+        <div class="activity-body">
+          <div class="activity-icon-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><polyline points="15 6 12 3 9 6"/><line x1="12" y1="3" x2="12" y2="14"/><path d="m18.5 17.5-5-8"/><path d="M5.5 17.5 9 9"/></svg>
+          </div>
+          <div><h3>Cycling</h3><p>3 trips available</p></div>
+        </div>
+      </a>
+
+      <a href="#treks" class="activity-card reveal" style="animation-delay:.2s">
+        <img src="https://images.unsplash.com/photo-1486911278844-a81c5267e227?w=800&q=80" alt="Helicopter Tours" loading="lazy" />
+        <div class="activity-overlay"></div>
+        <div class="activity-body">
+          <div class="activity-icon-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+          </div>
+          <div><h3>Helicopter Tours</h3><p>2 trips available</p></div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section testimonials-section">
+  <div class="section-inner">
+    <div class="section-heading light reveal">
+      <h2>What Our Trekkers Say</h2>
+      <p>Real stories from real adventurers</p>
+    </div>
+    <div class="reveal" id="testimonialWrapper">
+      <div class="testimonial-card" id="testimonialCard">
+        <div class="quote-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+        </div>
+        <div class="stars" id="testimonialStars"></div>
+        <blockquote class="testimonial-quote" id="testimonialQuote"></blockquote>
+        <div class="testimonial-author">
+          <div>
+            <strong id="testimonialName"></strong>
+            <div class="meta" id="testimonialMeta"></div>
+          </div>
+          <span class="testimonial-source" id="testimonialSource"></span>
+        </div>
+      </div>
+      <div class="testimonial-nav">
+        <button class="nav-btn" id="prevBtn" aria-label="Previous">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <div class="dots" id="testimonialDots"></div>
+        <button class="nav-btn" id="nextBtn" aria-label="Next">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-section">
+  <div class="cta-bg"></div>
+  <div class="cta-overlay"></div>
+  <div class="cta-inner reveal">
+    <h2>Ready for the Adventure of a Lifetime?</h2>
+    <p>Let our expert team craft your perfect Himalayan journey. Custom itineraries, guaranteed departures, and unmatched local expertise.</p>
+    <div class="cta-btns">
+      <a href="#contact" class="btn-primary" style="display:inline-block">Plan My Trek</a>
+      <a href="#treks" class="btn-outline-white" style="display:inline-block">Browse Treks</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="section-inner">
+    <div class="section-heading reveal">
+      <h2>Frequently Asked Questions</h2>
+      <p>Everything you need to know before your Himalayan adventure</p>
+    </div>
+    <div class="faq-inner reveal" id="faqList">
+
+      <div class="faq-item">
+        <button class="faq-q">
+          How fit do I need to be for trekking in Nepal?
+          <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Fitness requirements vary by trek. Easy treks like Poon Hill are suitable for anyone with moderate fitness who can walk 4–6 hours per day. Challenging treks like Everest Base Camp require good cardiovascular fitness. We recommend starting training 2–3 months before your trek, focusing on cardio and hiking with a loaded backpack.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          What is the best time to trek in Nepal?
+          <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">The best trekking seasons are Spring (March–May) and Autumn (September–November). Spring offers warmer temperatures and blooming rhododendrons, while Autumn provides the clearest skies and best mountain views. Winter treks (December–February) are possible at lower altitudes.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          Do I need a guide and porter for trekking?
+          <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">While not legally required for all routes, we strongly recommend trekking with a licensed guide for safety, navigation, cultural insights, and to support the local economy. Porters carry your heavy gear, allowing you to trek comfortably with just a daypack. Some restricted areas like Manaslu legally require a guide.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          What about altitude sickness?
+          <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Altitude sickness (AMS) is a real concern above 2,500m. Our itineraries include proper acclimatization days, gradual altitude gains, and our guides are trained in recognizing and managing altitude-related illnesses. We carry oximeters and first aid kits, and have evacuation plans in place.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          What is included in the trek price?
+          <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Our trek prices include: airport transfers, hotel accommodation in cities, all meals during the trek, an experienced English-speaking guide, porter service, all permits, and a first aid kit. Excluded items include international flights, Nepal visa, travel insurance, personal expenses, and tips.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          Is travel insurance mandatory?
+          <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Yes, comprehensive travel insurance covering emergency helicopter evacuation up to 6,000m is mandatory for all our treks. We recommend policies that include trip cancellation, medical expenses, and emergency evacuation. We can help recommend insurance providers specializing in adventure travel.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          Can I customize a trek itinerary?
+          <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Absolutely! We specialize in creating customized itineraries. Whether you want to combine treks, add cultural tours, extend or shorten the duration, or create a completely bespoke adventure — our team will work with you to design the perfect trip.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          What happens if the weather is bad?
+          <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Safety is our top priority. Our guides monitor weather conditions closely and have contingency plans for every route. We may adjust the itinerary, take an alternative route, or add rest days. Our 98% success rate reflects our expertise in managing these situations.</div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="section newsletter-section" id="contact">
+  <div class="section-inner">
+    <div class="newsletter-inner reveal">
+      <h2>Get Trekking Tips &amp; Special Offers</h2>
+      <p>Join 10,000+ adventurers. No spam, just inspiration and exclusive deals.</p>
+      <div id="newsletterFormWrap">
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" placeholder="Your email address" required id="newsletterEmail" />
+          <button type="submit">
+            <svg style="display:inline;vertical-align:middle;margin-right:.3rem" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <svg width="32" height="32" viewBox="0 0 36 36" fill="none">
+            <path d="M4 28L18 8l14 20H4z" fill="#d4a853" opacity=".9"/>
+            <path d="M10 28L18 14l8 14H10z" fill="#1e3a5f"/>
+          </svg>
+          <span class="logo-text">Yetion</span>
+        </div>
+        <p>Nepal's premier trekking and adventure travel company. Experience the Himalayas with expert guides, guaranteed departures, and an unmatched 98% success rate.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Twitter">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="YouTube">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h3>Destinations</h3>
+        <ul>
+          <li><a href="#destinations">Nepal Treks</a></li>
+          <li><a href="#destinations">Bhutan Tours</a></li>
+          <li><a href="#destinations">Tibet Expeditions</a></li>
+          <li><a href="#treks">All Treks</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Popular Treks</h3>
+        <ul>
+          <li><a href="#treks">Everest Base Camp</a></li>
+          <li><a href="#treks">Annapurna Base Camp</a></li>
+          <li><a href="#treks">Annapurna Circuit</a></li>
+          <li><a href="#treks">Poon Hill Trek</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Company</h3>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-contact">
+      <a href="mailto:info@yetion.co">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        info@yetion.co
+      </a>
+      <a href="tel:+97714540084">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.38 2 2 0 0 1 3.58 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.08 6.08l1.06-1.06a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        +977-1-4540084
+      </a>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Hattisar, Kathmandu, 44600, Nepal
+      </span>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Yetion. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp Button -->
+<a href="https://wa.me/9779851233710" class="whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+</a>
+
+<!-- Back to Top -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="m18 15-6-6-6 6"/></svg>
+</button>
+
+<script>
+  // Testimonials data
+  const testimonials = [
+    { name: "Sarah Mitchell", country: "United States", trek: "Everest Base Camp Trek", rating: 5, quote: "Yetion made my lifelong dream come true. Our guide Pemba was incredible — knowledgeable, patient, and genuinely caring about our wellbeing. Standing at Everest Base Camp was the most emotional moment of my life.", source: "TripAdvisor" },
+    { name: "James & Emma Thompson", country: "United Kingdom", trek: "Annapurna Base Camp Trek", rating: 5, quote: "We trekked ABC as a couple and it was the best decision we ever made. The trek was perfectly paced, the tea houses were charming, and waking up surrounded by the Annapurna amphitheater was beyond words.", source: "Google" },
+    { name: "Takeshi Yamamoto", country: "Japan", trek: "Manaslu Circuit Trek", rating: 5, quote: "The Manaslu Circuit was a life-changing experience. Few tourists, incredible scenery, and authentic village culture. Our guide shared stories about the mountains that made every day special.", source: "TripAdvisor" },
+    { name: "Maria Gonzalez", country: "Spain", trek: "Poon Hill Trek", rating: 5, quote: "As a first-time trekker, I was nervous about the Himalayas. Yetion made me feel safe throughout. The Poon Hill sunrise is truly magical — the entire Annapurna range lit up in gold. I'm already planning my next trek!", source: "TripAdvisor" },
+    { name: "Lisa & Mark Andersen", country: "Denmark", trek: "Bhutan Druk Path Trek", rating: 5, quote: "Bhutan exceeded every expectation. The Druk Path Trek was stunning, but it was the cultural immersion that truly moved us. Tiger's Nest was breathtaking. Yetion handled all the logistics perfectly.", source: "TripAdvisor" },
+  ];
+  let currentTestimonial = 0;
+
+  function renderTestimonial(i) {
+    const t = testimonials[i];
+    document.getElementById('testimonialStars').innerHTML = Array.from({length:5}).map((_,j) =>
+      `<svg class="star${j>=t.rating?' empty':''}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`
+    ).join('');
+    document.getElementById('testimonialQuote').textContent = '\u201c' + t.quote + '\u201d';
+    document.getElementById('testimonialName').textContent = t.name;
+    document.getElementById('testimonialMeta').textContent = t.country + ' · ' + t.trek;
+    document.getElementById('testimonialSource').textContent = t.source;
+    document.querySelectorAll('.dot').forEach((d,j) => d.classList.toggle('active', j===i));
+  }
+
+  function buildDots() {
+    const container = document.getElementById('testimonialDots');
+    container.innerHTML = testimonials.map((_,i) =>
+      `<button class="dot${i===0?' active':''}" onclick="goTo(${i})" aria-label="Testimonial ${i+1}"></button>`
+    ).join('');
+  }
+
+  function goTo(i) {
+    currentTestimonial = i;
+    renderTestimonial(i);
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', () => goTo((currentTestimonial - 1 + testimonials.length) % testimonials.length));
+  document.getElementById('nextBtn').addEventListener('click', () => goTo((currentTestimonial + 1) % testimonials.length));
+
+  buildDots();
+  renderTestimonial(0);
+  setInterval(() => goTo((currentTestimonial + 1) % testimonials.length), 6000);
+
+  // Header scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('header').classList.toggle('scrolled', window.scrollY > 40);
+    document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 400);
+  });
+
+  // Back to top
+  document.getElementById('backToTop').addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+  // Mobile menu
+  document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+    document.getElementById('mobileNav').classList.toggle('open');
+  });
+  document.querySelectorAll('.mobile-nav a').forEach(a => a.addEventListener('click', () => document.getElementById('mobileNav').classList.remove('open')));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // Newsletter
+  document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    document.getElementById('newsletterFormWrap').innerHTML = `
+      <div class="newsletter-success">
+        <p style="font-weight:600">Thanks for subscribing!</p>
+        <p style="font-size:.875rem;margin-top:.25rem">Check your inbox for a welcome guide to Himalayan trekking.</p>
+      </div>`;
+  });
+
+  // Stats counter animation
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    const duration = 2000;
+    const step = target / (duration / 16);
+    let current = 0;
+    const timer = setInterval(() => {
+      current = Math.min(current + step, target);
+      el.textContent = Math.floor(current).toLocaleString('en-US') + suffix;
+      if (current >= target) clearInterval(timer);
+    }, 16);
+  }
+
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('[data-target]').forEach(animateCounter);
+        statsObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelector('.stats') && statsObserver.observe(document.querySelector('.stats'));
+
+  // Scroll reveal
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>
